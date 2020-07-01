@@ -1,0 +1,10 @@
+C:\Users\nourd\source\repos\DiscordAutoTyper\DiscordAutoTyper\bin\Debug\DiscordAutoTyper.exe.config
+C:\Users\nourd\source\repos\DiscordAutoTyper\DiscordAutoTyper\bin\Debug\DiscordAutoTyper.exe
+C:\Users\nourd\source\repos\DiscordAutoTyper\DiscordAutoTyper\bin\Debug\DiscordAutoTyper.pdb
+C:\Users\nourd\source\repos\DiscordAutoTyper\DiscordAutoTyper\obj\Debug\DiscordAutoTyper.Form1.resources
+C:\Users\nourd\source\repos\DiscordAutoTyper\DiscordAutoTyper\obj\Debug\DiscordAutoTyper.Properties.Resources.resources
+C:\Users\nourd\source\repos\DiscordAutoTyper\DiscordAutoTyper\obj\Debug\DiscordAutoTyper.csproj.GenerateResource.cache
+C:\Users\nourd\source\repos\DiscordAutoTyper\DiscordAutoTyper\obj\Debug\DiscordAutoTyper.csproj.CoreCompileInputs.cache
+C:\Users\nourd\source\repos\DiscordAutoTyper\DiscordAutoTyper\obj\Debug\DiscordAutoTyper.exe
+C:\Users\nourd\source\repos\DiscordAutoTyper\DiscordAutoTyper\obj\Debug\DiscordAutoTyper.pdb
+C:\Users\nourd\source\repos\DiscordAutoTyper\DiscordAutoTyper\obj\Debug\DiscordAutoTyper.csprojAssemblyReference.cache
