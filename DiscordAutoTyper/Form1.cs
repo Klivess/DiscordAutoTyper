@@ -36,6 +36,21 @@ namespace DiscordAutoTyper
         bool AutoDeleteMessages = false;
         bool stopped = false;
 
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        static extern bool SetCursorPos(int x, int y);
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+
+        public static extern void mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
+        public const int MOUSEEVENTF_LEFTDOWN = 0x02;
+        public const int MOUSEEVENTF_LEFTUP = 0x04;
+
+        //This simulates a left mouse click
+        public static void LeftMouseClick(int xpos, int ypos)
+        {
+            SetCursorPos(xpos, ypos);
+            mouse_event(MOUSEEVENTF_LEFTDOWN, xpos, ypos, 0, 0);
+            mouse_event(MOUSEEVENTF_LEFTUP, xpos, ypos, 0, 0);
+        }
 
         // The three mouse events are to move the the window by clicking onto the form.
         private void Form1_MouseDown(object sender, MouseEventArgs e)
@@ -103,6 +118,13 @@ namespace DiscordAutoTyper
             await StartLoop();
         }
 
+        public async Task AutoDeleteRecentMessage()
+        {
+            //Cursor.Position = new Point(352, 953);
+            //Cursor.Position = new Point(388, 898);
+
+            LeftMouseClick(352, 953);
+        }
         public async Task StartLoop()
         {
             try
@@ -165,6 +187,7 @@ namespace DiscordAutoTyper
         // Since auto delete isn't a feature yet, this isn't functional, shows a message box when clicked.
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
+            AutoDeleteMessages = checkBox1.Checked;
             if (checkBox1.Checked == true)
             {
                 MessageBox.Show("This feature isn't available.");
@@ -173,11 +196,24 @@ namespace DiscordAutoTyper
         }
         private void button3_Click(object sender, EventArgs e)
         {
+
+            try
+            {
+                // placeholder messagebox
+                MessageBox.Show("This used to show something, not anymore.");
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            /*
             try
             {
                 int[] CursorPos = { System.Windows.Forms.Cursor.Position.X, System.Windows.Forms.Cursor.Position.Y };
                 //MessageBox.Show(CursorPos[1].ToString(), ", " + CursorPos[2].ToString());
-                MessageBox.Show(System.Windows.Forms.Cursor.Position.X + ", " + System.Windows.Forms.Cursor.Position.Y);
+                //MessageBox.Show(System.Windows.Forms.Cursor.Position.X + ", " + System.Windows.Forms.Cursor.Position.Y);
+
                 Cursor.Position = new Point(352, 953);
                 
                 Cursor.Position = new Point(388, 898);
@@ -187,7 +223,8 @@ namespace DiscordAutoTyper
             {
                 MessageBox.Show("Error: "+ex.Message);
             }
-            
+            */
+
         }
 
         private void label5_Click(object sender, EventArgs e)
