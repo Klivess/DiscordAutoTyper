@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
@@ -33,6 +34,8 @@ namespace DiscordAutoTyper
         private Point startPoint = new Point(0, 0);
         bool ocassional = false;
         bool AutoDeleteMessages = false;
+        bool stopped = false;
+
 
         // The three mouse events are to move the the window by clicking onto the form.
         private void Form1_MouseDown(object sender, MouseEventArgs e)
@@ -88,29 +91,47 @@ namespace DiscordAutoTyper
             }
             else
             {
-                Task delay = Task.Delay(4000);
-                delay.Wait();
-                StartLoop();
+                SubLoop();
             }
+        }
+
+        public async Task SubLoop()
+        {
+            stopped = false;
+            button4.Visible = true;
+            await Task.Delay(4000);
+            await StartLoop();
         }
 
         public async Task StartLoop()
         {
             try
             {
-                if (ocassional)
+                if (stopped != true)
                 {
-                    // I know this isnt the best way to do this, but who cares.
-                    Random rnd = new Random();
-                    int decider = rnd.Next(1, 10);
-                    if (decider == 5 || decider == 8)
+                    if (ocassional)
                     {
-                        char[] characters = chancebox.Text.ToCharArray();
-                        foreach (char character in characters)
+                        // I know this isnt the best way to do this, but who cares.
+                        Random rnd = new Random();
+                        int decider = rnd.Next(1, 10);
+                        if (decider == 5 || decider == 8)
                         {
-                            SendKeys.Send("{" + character.ToString() + "}");
+                            char[] characters = chancebox.Text.ToCharArray();
+                            foreach (char character in characters)
+                            {
+                                SendKeys.Send("{" + character.ToString() + "}");
+                            }
+                            SendKeys.Send("{ENTER}");
                         }
-                        SendKeys.Send("{ENTER}");
+                        else
+                        {
+                            char[] characters = typer.Text.ToCharArray();
+                            foreach (char character in characters)
+                            {
+                                SendKeys.Send("{" + character.ToString() + "}");
+                            }
+                            SendKeys.Send("{ENTER}");
+                        }
                     }
                     else
                     {
@@ -121,26 +142,23 @@ namespace DiscordAutoTyper
                         }
                         SendKeys.Send("{ENTER}");
                     }
-                }
-                else
-                {
-                    char[] characters = typer.Text.ToCharArray();
-                    foreach (char character in characters)
-                    {
-                        SendKeys.Send("{" + character.ToString() + "}");
-                    }
-                    SendKeys.Send("{ENTER}");
-                }
-                StringToInt sti = new StringToInt();
-                int? time = sti.ConvertStringToInt(delaytime.Text);
-                //MessageBox.Show(time.Value.ToString()); Debug
-                //Task delayy = Task.Delay(time.Value * 1000);
-                await Task.Delay(time.Value * 1000);
-                await StartLoop();
+                    StringToInt sti = new StringToInt();
+                    int? time = sti.ConvertStringToInt(delaytime.Text);
+                    //MessageBox.Show(time.Value.ToString()); Debug
+                    //Task delayy = Task.Delay(time.Value * 1000);
+                    await Task.Delay(time.Value * 1000);
+                    await StartLoop();
+                }   
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                // Get stack trace for the exception with source file information
+                var st = new StackTrace(ex, true);
+                // Get the top stack frame
+                var frame = st.GetFrame(0);
+                // Get the line number from the stack frame
+                var line = frame.GetFileLineNumber();
+                MessageBox.Show("Error: " + ex.Message+" Line Number: "+line.ToString());
             }
         }
 
@@ -187,6 +205,12 @@ namespace DiscordAutoTyper
             {
                 button3.Visible = false;
             }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            stopped = true;
+            button4.Visible = false;
         }
     }
 }
