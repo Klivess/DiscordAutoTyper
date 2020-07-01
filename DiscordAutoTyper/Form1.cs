@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -22,6 +23,7 @@ namespace DiscordAutoTyper
         // To send keys:  SendKeys.Send("{ENTER}");
 
 
+
         public Form1()
         {
             InitializeComponent();
@@ -30,6 +32,7 @@ namespace DiscordAutoTyper
         private bool dragging = false;
         private Point startPoint = new Point(0, 0);
         bool ocassional = false;
+        bool AutoDeleteMessages = false;
 
         // The three mouse events are to move the the window by clicking onto the form.
         private void Form1_MouseDown(object sender, MouseEventArgs e)
@@ -91,7 +94,7 @@ namespace DiscordAutoTyper
             }
         }
 
-        void StartLoop()
+        public async Task StartLoop()
         {
             try
             {
@@ -131,9 +134,9 @@ namespace DiscordAutoTyper
                 StringToInt sti = new StringToInt();
                 int? time = sti.ConvertStringToInt(delaytime.Text);
                 //MessageBox.Show(time.Value.ToString()); Debug
-                Task delayy = Task.Delay(time.Value);
+                Task delayy = Task.Delay(time.Value * 1000);
                 delayy.Wait();
-                StartLoop();
+                await StartLoop();
             }
             catch(Exception ex)
             {
@@ -148,6 +151,41 @@ namespace DiscordAutoTyper
             {
                 MessageBox.Show("This feature isn't available.");
                 checkBox1.Checked = false;
+            }
+        }
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int[] CursorPos = { System.Windows.Forms.Cursor.Position.X, System.Windows.Forms.Cursor.Position.Y };
+                //MessageBox.Show(CursorPos[1].ToString(), ", " + CursorPos[2].ToString());
+                MessageBox.Show(System.Windows.Forms.Cursor.Position.X + ", " + System.Windows.Forms.Cursor.Position.Y);
+                Cursor.Position = new Point(352, 953);
+                
+                Cursor.Position = new Point(388, 898);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: "+ex.Message);
+            }
+            
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox2.Checked)
+            {
+                button3.Visible = true;
+            }
+            else
+            {
+                button3.Visible = false;
             }
         }
     }
