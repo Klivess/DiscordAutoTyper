@@ -8,3 +8,6 @@ C:\Users\nourd\source\repos\DiscordAutoTyper\DiscordAutoTyper\obj\Debug\DiscordA
 C:\Users\nourd\source\repos\DiscordAutoTyper\DiscordAutoTyper\obj\Debug\DiscordAutoTyper.exe
 C:\Users\nourd\source\repos\DiscordAutoTyper\DiscordAutoTyper\obj\Debug\DiscordAutoTyper.pdb
 C:\Users\nourd\source\repos\DiscordAutoTyper\DiscordAutoTyper\obj\Debug\DiscordAutoTyper.csprojAssemblyReference.cache
+C:\Users\nourd\source\repos\DiscordAutoTyper\DiscordAutoTyper\bin\Debug\Microsoft.VisualStudio.TestTools.UITest.Extension.dll
+C:\Users\nourd\source\repos\DiscordAutoTyper\DiscordAutoTyper\bin\Debug\Microsoft.VisualStudio.OLE.Interop.dll
+C:\Users\nourd\source\repos\DiscordAutoTyper\DiscordAutoTyper\obj\Debug\DiscordAutoTyper.csproj.CopyComplete

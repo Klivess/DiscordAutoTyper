@@ -133,7 +133,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI Symbol", 15.75F, System.Drawing.FontStyle.Bold);
-            this.label5.Location = new System.Drawing.Point(509, 162);
+            this.label5.Location = new System.Drawing.Point(520, 162);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(268, 150);
             this.label5.TabIndex = 9;
@@ -168,7 +168,7 @@
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(668, 142);
+            this.checkBox2.Location = new System.Drawing.Point(700, 69);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(88, 17);
             this.checkBox2.TabIndex = 13;

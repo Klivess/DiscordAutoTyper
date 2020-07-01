@@ -134,8 +134,8 @@ namespace DiscordAutoTyper
                 StringToInt sti = new StringToInt();
                 int? time = sti.ConvertStringToInt(delaytime.Text);
                 //MessageBox.Show(time.Value.ToString()); Debug
-                Task delayy = Task.Delay(time.Value * 1000);
-                delayy.Wait();
+                //Task delayy = Task.Delay(time.Value * 1000);
+                await Task.Delay(time.Value * 1000);
                 await StartLoop();
             }
             catch(Exception ex)
