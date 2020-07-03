@@ -90,7 +90,7 @@ namespace DiscordAutoTyper
             {
                 ocassional = true;
             }
-            // Terrible practice below, but.... who cares?
+            // Terrible practice below, but.... meh?
             bool isNumeric = true;
             foreach (char c in delaytime.Text)
             {
@@ -143,7 +143,10 @@ namespace DiscordAutoTyper
                             {
                                 SendKeys.Send("{" + character.ToString() + "}");
                             }
-                            SendKeys.Send("{ENTER}");
+                            if (checkBox3.Checked != true)
+                            {
+                                SendKeys.Send("{ENTER}");
+                            }
                         }
                         else
                         {
@@ -152,7 +155,10 @@ namespace DiscordAutoTyper
                             {
                                 SendKeys.Send("{" + character.ToString() + "}");
                             }
-                            SendKeys.Send("{ENTER}");
+                            if (checkBox3.Checked != true)
+                            {
+                                SendKeys.Send("{ENTER}");
+                            }
                         }
                     }
                     else
@@ -162,23 +168,22 @@ namespace DiscordAutoTyper
                         {
                             SendKeys.Send("{" + character.ToString() + "}");
                         }
-                        SendKeys.Send("{ENTER}");
+                        if (checkBox3.Checked != true)
+                        {
+                            SendKeys.Send("{ENTER}");
+                        }
                     }
                     StringToInt sti = new StringToInt();
                     int? time = sti.ConvertStringToInt(delaytime.Text);
                     //MessageBox.Show(time.Value.ToString()); Debug
-                    //Task delayy = Task.Delay(time.Value * 1000);
                     await Task.Delay(time.Value * 1000);
                     await StartLoop();
                 }   
             }
             catch(Exception ex)
             {
-                // Get stack trace for the exception with source file information
-                var st = new StackTrace(ex, true);
-                // Get the top stack frame
-                var frame = st.GetFrame(0);
-                // Get the line number from the stack frame
+                var ste = new StackTrace(ex, true);
+                var frame = ste.GetFrame(0);
                 var line = frame.GetFileLineNumber();
                 MessageBox.Show("Error: " + ex.Message+" Line Number: "+line.ToString());
             }
